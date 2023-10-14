@@ -9,13 +9,25 @@ html{
 }
 
 section {
-    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 50px, 0;
 }
+
 section h1 {
+    text-align: center;
+}
+
+.main {
+    height: 80vh;
+}
+
+.bottom {
+    height: 20vh;
+}
+
+.main, .bottom {
     text-align: center;
 }
 
