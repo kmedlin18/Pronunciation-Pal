@@ -166,5 +166,3 @@ recognition.onerror = (event) => {
   // Display an error message in the 'diagnostic' element
   diagnostic.textContent = `Error occurred in recognition: ${event.error}`;
 };
-
-
