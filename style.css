@@ -72,7 +72,7 @@
     flex: 0 0 calc(33.33% - 20px);
     max-width: calc(33.33% - 20px);
     max-height: 100px; 
-    box-sizing: border-box; */
+    box-sizing: border-box; 
   }
 
 
