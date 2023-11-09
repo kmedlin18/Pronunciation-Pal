@@ -1,3 +1,14 @@
+/*
+TODO ideas for Kirsten:
+- Add a "recent searches" title
+- Add red circle to indicate recording
+- In the wireframe we have it so there is a new button to listen again, but I think it makes
+more sense to have it be the same button
+- Maybe some indicator that the app listened properly
+- Show the user errors
+*/
+
+
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const SpeechGrammarList =
@@ -89,7 +100,7 @@ recognition.onresult = (event) => {
   // There is no voice recognition happening yet, that still needs to be implemented. This is probably temporay code so I could style the html.
   // For the purpose of this palce holder you still have to say something to get it to stop listening and display the images.
   // For now, we were thinking of having a set number of words the user could say and it would populate with the correct pronunciation diagrams similar to how it works with
-  // the colors. Claire would know a lot about what diagrams to use. 
+  // the colors. Claire would know a lot about what diagrams to use.
   // ***
 
   
