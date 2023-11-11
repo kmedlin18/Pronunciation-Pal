@@ -8,7 +8,6 @@ more sense to have it be the same button
 - Show the user errors
 */
 
-
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const SpeechGrammarList =
@@ -104,7 +103,7 @@ recognition.onresult = (event) => {
   // ***
 
   
-  const imgSrc = 'images\\pronunciation_images\\pronunciation_palceholder.PNG'
+  const imgSrc = 'images\\pronunciation_images\\pronunciation_placeholder.PNG'
 
   const diagramSection = document.querySelector(".diagram-section");
   const rercentSection = document.querySelector('.recent-section');
