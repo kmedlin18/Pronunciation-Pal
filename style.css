@@ -19,8 +19,13 @@
     justify-content: space-evenly;
     flex-direction: column;
     height: 30vh;
-    text-align: center;
-    font-size: 30px;
+}
+
+.top-paragraph {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 35px;
+
 }
 
 .listen-button {
@@ -127,12 +132,22 @@
   background-color: rgb(66, 66, 66);
 }
 
+.recognized-word {
+  font-size: 30px;
+  color: #000;
+  display: none;
+  font-weight: bold;
+
+  
+
+}
+
 footer {
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 12px;
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

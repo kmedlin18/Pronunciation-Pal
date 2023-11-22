@@ -61,6 +61,12 @@ recognition.onresult = (event) => {
     recentWords.push(word);
     updateRecentWords();
 
+    // Display spoken word
+    const recognizedWordElement = document.querySelector("#recognized-word span");
+    recognizedWordElement.textContent = recognizedWords
+    const recognizedWordContainer = document.querySelector('#recognized-word');
+    recognizedWordContainer.style.display = 'block';
+
     // Check if the recognized word is in the predefined list
     if (predefinedWords.includes(word)) {
       handleRecognizedWord(word);
