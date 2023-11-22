@@ -8,7 +8,6 @@ more sense to have it be the same button
 - Show the user errors
 */
 
-
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const SpeechGrammarList =
@@ -52,7 +51,6 @@ recognition.lang = "en-US";
 recognition.interimResults = false;
 //Sets the number of alternative potential matches that should be returned per result - this could be good for the future
 recognition.maxAlternatives = 1;
-
 
 // Find and assign HTML elements by their class names
 const diagnostic = document.querySelector(".output"); // Element for displaying diagnostic messages
@@ -104,7 +102,7 @@ recognition.onresult = (event) => {
   // ***
 
   
-  const imgSrc = 'images\\pronunciation_images\\pronunciation_palceholder.PNG'
+  const imgSrc = 'images\\pronunciation_images\\pronunciation_placeholder.PNG'
 
   const diagramSection = document.querySelector(".diagram-section");
   const rercentSection = document.querySelector('.recent-section');
