@@ -41,14 +41,16 @@ function updateRecentWords() {
 
 // Attach an event handler to the click event on the listen button
 const listenButton = document.getElementById("listen-button");
+const listeningIndicator = document.getElementById('listening-indicator')
 listenButton.addEventListener("click", () => {
   recognition.start();
   console.log("Ready to receive command");
   listenButton.textContent = "Recording...";
+  listeningIndicator.style.display = 'block'; // Display listening indicator
 });
 
 // Array of predefined words
-const predefinedWords = ["hey", "what", "come", "go", "hand", "word"];
+const predefinedWords = ["hey", "what", "come", "go", "hand", "sick"];
 
 // Event handler for recognition results
 recognition.onresult = (event) => {
@@ -79,43 +81,27 @@ recognition.onresult = (event) => {
 
 // Function to handle recognized words
 function handleRecognizedWord(word) {
-  // Show a loading spinner or change the color of the "Record" button during recognition
-  showRecognitionInProgress();
 
-  // Create an array to store image sources for each letter
-  const letterImageSources = [];
-
-  // Loop through each letter in the recognized word
-  for (const letter of word) {
-    // Build the image source path for the letter
-    const letterImgSrc = `images\\pronunciation_images\\${word}\\${letter}.png`;
-    letterImageSources.push(letterImgSrc);
+  if (predefinedWords.includes(word)) {
+    const wordImgSrc = `images/pronunciation_images/${word}/${word}.png`;
+    displayWordImage(wordImgSrc);
   }
-
-  // Display the diagrams for each letter in the recognized word
-  displayLetterDiagrams(letterImageSources);
-
-  // Reset the "Record" button after recognition
-  hideRecognitionInProgress();
 }
 
 // Function to display diagrams for each letter in the recognized word
-function displayLetterDiagrams(letterImageSources) {
+function displayWordImage(wordImgSrc) {
   // Clear the existing content in the diagram section
   const diagramSection = document.querySelector(".diagram-section");
   diagramSection.innerHTML = "";
 
-  // Loop through each letter's image source and create and append image elements
-  letterImageSources.forEach((letterImgSrc) => {
-    const img = document.createElement("img");
-    img.src = letterImgSrc;
+  const img = document.createElement("img");
+  img.src = wordImgSrc;
 
-    const container = document.createElement("div");
-    container.className = "image-container";
-    container.appendChild(img);
+  const container = document.createElement("div");
+  container.className = "image-container";
+  container.appendChild(img);
 
-    diagramSection.appendChild(container);
-  });
+  diagramSection.appendChild(container);
 }
 
 // Event handler for the click event on the show-diagrams-btn button
@@ -129,21 +115,16 @@ document.addEventListener("click", (event) => {
     // Get the word associated with the recent-word-box
     const word = recentWordBox.querySelector(".word-title").textContent;
 
-    // Get the diagrams for each letter in the word
-    const letterImageSources = [];
-    for (const letter of word) {
-      const letterImgSrc = `images\\pronunciation_images\\${word}\\${letter}.png`;
-      letterImageSources.push(letterImgSrc);
-    }
+    const wordImgSrc = `images\\pronunciation_images\\${word}\\${word}.png`;
 
-    // Display a popup or modal with the diagrams
-    displayDiagramsPopup(letterImageSources);
+    // Display a popup with the diagrams
+    displayDiagramsPopup(wordImgSrc);
   }
 });
 
 // Function to display diagrams in a popup or modal
-function displayDiagramsPopup(letterImageSources) {
-  console.log("Displaying popup with sources:", letterImageSources);
+function displayDiagramsPopup(wordImgSrc) {
+  console.log("Displaying popup with sources:", wordImgSrc);
   // Remove any existing popups
   const existingPopup = document.querySelector(".diagram-popup");
   if (existingPopup) {
@@ -156,38 +137,22 @@ function displayDiagramsPopup(letterImageSources) {
   // Close button
   const closeBtn = document.createElement("button");
   closeBtn.className = "close-popup-btn";
-  closeBtn.innerHTML = "&times;"; // Close symbol (X)
+  closeBtn.innerHTML = "&times;";
   closeBtn.addEventListener("click", () => {
-    document.querySelector(".recent-section").removeChild(popup);//body.removeChild(popup);
+    document.querySelector(".recent-section").removeChild(popup);
   });
   popup.appendChild(closeBtn);
 
-  // Loop through each letter's image source and create and append image elements
-  letterImageSources.forEach((letterImgSrc) => {
-    const img = document.createElement("img");
-    img.src = letterImgSrc;
-    popup.appendChild(img);
-  });
+  const img = document.createElement("img");
+  img.src = wordImgSrc;
+  popup.appendChild(img);
+
 
   // Append the popup to the recent section
   document.querySelector(".recent-section").appendChild(popup);
 
-  // Add the "open" class to make the close button visible
+  // "open" class to make the close button visible
   popup.classList.add("open");
-}
-
-// Function to show loading spinner or change the color of the "Record" button
-function showRecognitionInProgress() {
-  // You can add your code here to show a loading spinner or change the style of the "Record" button
-  // For example, change the background color of the button
-  listenButton.style.backgroundColor = "orange";
-}
-
-// Function to hide loading spinner or reset the "Record" button
-function hideRecognitionInProgress() {
-  // You can add your code here to hide the loading spinner or reset the style of the "Record" button
-  // For example, reset the background color of the button
-  listenButton.style.backgroundColor = "black";
 }
 
 // Event handler for the end of speech recognition
@@ -195,12 +160,7 @@ recognition.onspeechend = () => {
   recognition.stop();
   console.log("Speech recognition ended");
   listenButton.textContent = "Record";
-};
-
-// Event handler for cases where no match is found
-recognition.onnomatch = (event) => {
-  console.log("No match found");
-  // Further implementation: Add any actions to take when no match is found.
+  listeningIndicator.style.display = 'none';
 };
 
 // Event handler for recognition errors
@@ -208,9 +168,4 @@ recognition.onerror = (event) => {
   console.error(`Error occurred in recognition: ${event.error}`);
 };
 
-// Event handler for the end of speech recognition
-recognition.onend = () => {
-  console.log("Speech recognition ended");
-  listenButton.textContent = "Record";
-  // Further implementation: Add any actions to take when speech ends.
-};
+
