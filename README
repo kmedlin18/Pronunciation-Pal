@@ -1,1 +1,15 @@
+In M1, we completed a template example application from "https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition". This application was used as a basis for our final product. It uses vanill Javascript that allows the user
+to press anywhere on the screen and speak a color that corresponds to a predefined set of colors. Based on what color the user says, the applciation's background will change colors to that color.
+
+In M2, the wireframe was created showing three distinct "screens" The first screen being the default state when the application is first started, screen two being the "listening" state where the app indicates to the user that
+it is waiting for speech, and the third state that shows the diagrams for the recognized word.
+
+In M3, we personalized the html and css to more like the wireframe. Everything matched the wireframe besides a small circle to indicate the app was recording, and minor formatting issues like button size. The app would recognize
+a predefined set of words (come, go, hand, hey, what) and the application would display place holder diagrams. The application also stored the three most recently spoken words, however there was not yet functionality for the
+"show diagrams" button.
+
+In M4 we added a small pulsating circle next to the "record" button to indicate that the app was listening for speech recognition. The app was also made to be responsive to mobile screen size and desktop screen size. The "show diagrams"
+button for the recently said words is now functional and displays a pop up window showing the diagrams for that word. The app also displays the corresponding diagrams and phonetic spelling for each sound for the predefined
+words.
+
 Source for diagrams: http://donpotter.net/pdf/blend_phonics_facial.pdf
